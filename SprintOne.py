@@ -3,6 +3,12 @@ import json
 
 
 # get jobs is taking url from main, sending request to site and checking status code before "prettying" json data.
+def check_jobs():
+    with open('gitjob.txt') as data:
+        if "Senior Mobile Developer" in data.read():
+            print("true")
+        else:
+            print("false! not found.")
 
 
 def get_jobs(url):
@@ -10,8 +16,10 @@ def get_jobs(url):
 
     if r.status_code == 200:
         pretty_json = json.loads(r.text)
+        print(len(pretty_json))
         save_to_file(pretty_json)
-
+    else:
+        print(r.status_code)
 
 # save_to_file is called by get_jobs, passing in cleaned up json data, then doing name.
 
@@ -28,4 +36,4 @@ def main():
         get_jobs(url)
 
 
-main()
+# main()
