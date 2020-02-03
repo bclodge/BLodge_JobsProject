@@ -23,6 +23,7 @@ def get_jobs(url):
 
 # save_to_file is called by get_jobs, passing in cleaned up json data, then doing name.
 
+
 def save_to_file(pretty_json):
     with open('gitjob.txt', 'w') as outfile:
         outfile.write(json.dumps(pretty_json, indent=2))
