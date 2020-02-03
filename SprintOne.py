@@ -10,7 +10,6 @@ def get_jobs(url):
 
     if r.status_code == 200:
         pretty_json = json.loads(r.text)
-
         save_to_file(pretty_json)
 
 
@@ -24,7 +23,7 @@ def save_to_file(pretty_json):
 
 # f string handles pagination for jobs.
 def main():
-    for i in range(1, 5):
+    for i in range(1, 6):
         url = f"https://jobs.github.com/positions.json?page={i}"
         get_jobs(url)
 
