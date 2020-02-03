@@ -35,6 +35,3 @@ def main():
     for i in range(1, 6):
         url = f"https://jobs.github.com/positions.json?page={i}"
         get_jobs(url)
-
-
-# main()

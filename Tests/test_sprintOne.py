@@ -7,7 +7,3 @@ def test_get_jobs():
 
 def test_job_name():
     SprintOne.check_jobs()
-
-
-
-
