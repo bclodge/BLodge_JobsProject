@@ -25,6 +25,7 @@ def get_jobs(url):
 
 
 def save_to_file(pretty_json):
+    # you really wanted with open('gitjob.txt', 'a') as outfile:
     with open('gitjob.txt', 'w') as outfile:
         outfile.write(json.dumps(pretty_json, indent=2))
     outfile.close()
