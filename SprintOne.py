@@ -1,6 +1,6 @@
 import requests
 import time
-from typing import Dict,List
+from typing import Dict, List
 import SprintTwo_JobsDatabase
 import json
 
@@ -18,7 +18,7 @@ def get_jobs() -> List[Dict]:
 
     all_job_data = []
     numOfPages = 1
-    isThereMorePages = True;
+    isThereMorePages = True
 
     while isThereMorePages:
         url = f"https://jobs.github.com/positions.json?page={numOfPages}"
@@ -36,7 +36,7 @@ def get_jobs() -> List[Dict]:
     return all_job_data
 
 
-def save_to_file(data, filename = 'gitjob.txt'):
+def save_to_file(data, filename='gitjob.txt'):
     with open(filename, 'a', encoding='utf-8') as outfile:
         for line_items in data:
             print(line_items, file=outfile)
@@ -49,5 +49,6 @@ def main():
     SprintTwo_JobsDatabase.setup_db(cursor)
     SprintTwo_JobsDatabase.write_to_db(cursor, target_data)
     SprintTwo_JobsDatabase.close_db(conn)
+
 
 main()

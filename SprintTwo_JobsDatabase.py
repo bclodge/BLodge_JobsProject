@@ -36,11 +36,3 @@ def write_to_db(cursor: sqlite3.Cursor, data):
 def close_db(connection: sqlite3.Connection):
     connection.commit()  # makes sure all changes are saved
     connection.close()
-
-# def main():
-# conn, cursor = open_db("job_database.sqlite")
-# setup_db(cursor)
-# close_db(conn)
-
-
-# main()
