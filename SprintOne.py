@@ -2,7 +2,6 @@ import requests
 import time
 from typing import Dict, List
 import SprintTwo_JobsDatabase
-import json
 
 
 # get jobs is taking url from main, sending request to site and checking status code before "prettying" json data.

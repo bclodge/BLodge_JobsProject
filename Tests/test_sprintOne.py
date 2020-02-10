@@ -1,6 +1,6 @@
-import SprintOne
 import SprintTwo_JobsDatabase
 import sqlite3
+# import SprintOne
 
 
 """def test_get_jobs():
@@ -10,7 +10,10 @@ import sqlite3
 def test_job_name():
     SprintOne.check_jobs()
 
+these are the tests from sprint one, can be used by importing the SprintOne.py file
 """
+
+
 def test_table_exists():
     conn = sqlite3.connect('Job_database.sqlite')
     cursor = conn.cursor()
