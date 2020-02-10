@@ -1,7 +1,8 @@
 import requests
 import time
 from typing import Dict,List
-import _sqlite3
+import SprintTwo_JobsDatabase
+import json
 
 
 # get jobs is taking url from main, sending request to site and checking status code before "prettying" json data.
@@ -36,7 +37,7 @@ def get_jobs() -> List[Dict]:
 
 
 def save_to_file(data, filename = 'gitjob.txt'):
-    with open('gitjob.txt', 'a') as outfile:
+    with open(filename, 'a', encoding='utf-8') as outfile:
         for line_items in data:
             print(line_items, file=outfile)
 
@@ -44,3 +45,9 @@ def save_to_file(data, filename = 'gitjob.txt'):
 def main():
     target_data = get_jobs()
     save_to_file(target_data)
+    conn, cursor = SprintTwo_JobsDatabase.open_db("job_database.sqlite")
+    SprintTwo_JobsDatabase.setup_db(cursor)
+    SprintTwo_JobsDatabase.write_to_db(cursor, target_data)
+    SprintTwo_JobsDatabase.close_db(conn)
+
+main()
