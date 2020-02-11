@@ -18,8 +18,7 @@ def setup_db(cursor: sqlite3.Cursor):
     created_at TEXT NOT NULL,
     company_posted TEXT NOT NULL,
     company_loc TEXT NOT NULL,
-    job_title TEXT NOT NULL
-    );''')
+    job_title TEXT NOT NULL);''')
 
 
 def write_to_db(cursor: sqlite3.Cursor, data):
