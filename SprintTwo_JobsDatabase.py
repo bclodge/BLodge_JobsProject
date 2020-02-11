@@ -12,9 +12,9 @@ def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
 # pulls from. (i.e 794026f2-dc61-11e8-93e0-d70b82e36db1_github
 def setup_db(cursor: sqlite3.Cursor):
     cursor.execute(''' CREATE TABLE IF NOT EXISTS jobs(\
-    job_id TEXT PRIMARY KEY,
-    job_type TEXT NOT NULL,
-    job_url TEXT NOT NULL,
+    job_id TEXT PRIMARY KEY,\
+    job_type TEXT NOT NULL,\
+    job_url TEXT NOT NULL,\
     created_at TEXT NOT NULL, company_posted TEXT NOT NULL, company_loc TEXT NOT NULL, job_title TEXT NOT NULL);''')
 
 
