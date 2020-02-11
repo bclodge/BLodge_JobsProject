@@ -18,7 +18,7 @@ def setup_db(cursor: sqlite3.Cursor):
     created_at TEXT NOT NULL,
     company_posted TEXT NOT NULL,
     company_loc TEXT NOT NULL,
-    job_title TEXT NOT NULL     
+    job_title TEXT NOT NULL
     );''')
 
 
@@ -26,8 +26,8 @@ def write_to_db(cursor: sqlite3.Cursor, data):
     for job_posted in data:  # begin inserting values into table jobs
         cursor.execute(''' INSERT INTO jobs(\
             job_id, job_type, job_url, created_at, company_posted, company_loc, job_title)\
-                VALUES (?, ?, ?, ?, ?, ?, ?)''', (job_posted['id'], job_posted['type'], job_posted['url'],\
-                                                  job_posted['created_at'], job_posted['company'],\
+                VALUES (?, ?, ?, ?, ?, ?, ?)''', (job_posted['id'], job_posted['type'], job_posted['url'],
+                                                  job_posted['created_at'], job_posted['company'],
                                                   job_posted['location'], job_posted['title']))
 
 
