@@ -11,7 +11,7 @@ def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
 # used these columns due to the similarity it would have with other jobs sites, also use f string to add which site it
 # pulls from. (i.e 794026f2-dc61-11e8-93e0-d70b82e36db1_github
 def setup_db(cursor: sqlite3.Cursor):
-    cursor.execute(''' CREATE TABLE IF NOT EXISTS jobs(
+    cursor.execute(''' CREATE TABLE IF NOT EXISTS jobs(\
     job_id TEXT PRIMARY KEY,
     job_type TEXT NOT NULL,
     job_url TEXT NOT NULL,
