@@ -1,7 +1,6 @@
 import SprintTwo_JobsDatabase
 import sqlite3
 # import SprintOne
-import SprintThree
 
 
 """def test_get_jobs():
