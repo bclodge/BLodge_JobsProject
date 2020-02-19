@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/job_database.sqlite</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="RSS_feed_SprintThree.sqlite" uuid="b309a69d-725d-453a-8df5-06f4ec8f58a3">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Brandon\PycharmProjects\BLodgeJobsPRoject\RSS_feed_SprintThree.sqlite</jdbc-url>
+    </data-source>
   </component>
 </project>
