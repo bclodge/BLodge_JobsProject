@@ -19,6 +19,7 @@ def setup_db(cursor: sqlite3.Cursor):
 
 
 def write_to_db(cursor: sqlite3.Cursor, data):
+    cursor.execute('DELETE FROM jobs;')  # clears the table before running
     for job_posted in data:  # begin inserting values into table jobs
         cursor.execute(''' INSERT INTO jobs(\
             job_id, job_type, job_url, created_at, company_posted, company_loc, job_title)\
