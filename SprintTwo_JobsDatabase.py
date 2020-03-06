@@ -39,7 +39,8 @@ def write_to_db(cursor: sqlite3.Cursor, data):
                                                             temp_location_holder.longitude))
         except AttributeError:
             cursor.execute(''' INSERT INTO jobs(\
-                            job_id, job_type, job_url, created_at, company_posted, company_loc, job_title, Latitude, Longitude)\
+                            job_id, job_type, job_url, created_at, company_posted, company_loc, job_title, Latitude,
+                             Longitude)\
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
                            (job_posted['id'], job_posted['type'], job_posted['url'],
                             job_posted['created_at'], job_posted['company'],
