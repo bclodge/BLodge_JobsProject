@@ -7,6 +7,7 @@ import dash_core_components as dashCoreComp
 import dash_html_components as html
 import geopy.distance as geoDist
 from typing import Tuple
+import plotly.graph_objs as go
 
 
 def establishConnection() -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
@@ -163,7 +164,24 @@ def printandPlotSelectCompany():
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     fig.show()
 
-
+# def gui():
+#     app = dash.Dash()
+#     df = createDataFrame()
+#
+#     app.layout = html.Div([
+#         html.H1('Walmart Store Openings'),
+#         html.Div(id='text-content'),
+#         dashCoreComp.Graph(id='map', figure={
+#             'data': [{
+#                 'lat': df['Latitude'],
+#                 'lon': df['Longitude'],
+#                 'marker': {
+#                     'color': df['YEAR'],
+#                     'size': 8,
+#                     'opacity': 0.6
+#                 },
+#                 'customdata': df['storenum'],
+#                 'type': 'scattermapbox'
 
 
 createMap()
