@@ -8,6 +8,7 @@ import dash_html_components as html
 import geopy.distance as geoDist
 from typing import Tuple
 import plotly.graph_objs as go
+import SprintThree
 
 
 def establishConnection() -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
@@ -119,7 +120,7 @@ def plotFiftyMileRadius():
 
     fig = px.scatter_mapbox(dataframe_from_table, lat="Latitude", lon="Longitude", hover_name="job_id",
                             hover_data=["job_title", "job_type", "company_posted", "created_at"],
-                            color_discrete_sequence=["fuchsia"],title="50 Mile radius", zoom=3, height=600)
+                            color_discrete_sequence=["fuchsia"], title="50 Mile radius", zoom=3, height=600)
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     fig.show()
@@ -163,7 +164,6 @@ def printandPlotSelectCompany():
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     fig.show()
-
 
 
 # def gui():
@@ -216,6 +216,7 @@ def printandPlotSelectCompany():
 #         app.run_server(debug=True)
 
 
+SprintThree.main()
 createMap()
 makeDistancedTable()
 insertIntoDistance()

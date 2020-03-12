@@ -7,4 +7,5 @@ Then it plots the results to a map, and some filtering / printing based on the r
 
 Missing: Test, and GUI. But filters are there, they just pop up as maps/prints.
 
-To run: Run SprintThree.py and then Sprint Four.Py
+To run: run Sprint Four.Py if tables do not already exists in the DB, otherwise 
+it will take a long time to build then populate.

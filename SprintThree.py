@@ -78,10 +78,11 @@ def combineTables():
     cursor.execute(''' INSERT INTO DualTable SELECT * FROM RSS_pull;''')
     connection.commit()
 
-
-CopyTables()
-combineTables()
-# Commit your changes to the program
-connection.commit()
-# Close the cursor_object
-connection.close()
+def main():
+    makeRSSTable()
+    CopyTables()
+    combineTables()
+    # Commit your changes to the program
+    connection.commit()
+    # Close the cursor_object
+    connection.close()
