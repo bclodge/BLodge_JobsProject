@@ -2,9 +2,9 @@
 
 Brandon Lodge
 
-No addtional installs
+Calls github and stack overflow api/rss feeds, saves them to a database.
+Then it plots the results to a map, and some filtering / printing based on the results.
 
-Project calls the github api, iterates through and pulls the job data and saves it to a .txt file and a sqlite database
+Missing: Test, and GUI. But filters are there, they just pop up as maps/prints.
 
-missing the 2 data check tests (good and bad) have not been able to figure those two out
-
+To run: Run SprintThree.py and then Sprint Four.Py
