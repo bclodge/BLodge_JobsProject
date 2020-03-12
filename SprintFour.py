@@ -31,7 +31,7 @@ def createMap():
 
     fig = px.scatter_mapbox(data_frame, lat="Latitude", lon="Longitude", hover_name="job_id",
                             hover_data=["job_title", "job_type", "company_posted", "created_at"],
-                            color_discrete_sequence=["fuchsia"], zoom=3, height=900)
+                            color_discrete_sequence=["fuchsia"], title="All Jobs", zoom=3, height=600)
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     fig.show()
@@ -91,7 +91,7 @@ def insertIntoDistance():
 
         distance = geoDist.distance(comparativeCoord, startingCoords).miles
 
-        if distance <= 200:
+        if distance <= 50:
             print(data[0])
             cursor.execute(
                 f'''INSERT OR IGNORE INTO  DistanceTable SELECT * FROM FiftyMileRadius where company_loc  = "{data[0]}" ''')
@@ -118,14 +118,58 @@ def plotFiftyMileRadius():
 
     fig = px.scatter_mapbox(dataframe_from_table, lat="Latitude", lon="Longitude", hover_name="job_id",
                             hover_data=["job_title", "job_type", "company_posted", "created_at"],
-                            color_discrete_sequence=["fuchsia"], zoom=3, height=900)
+                            color_discrete_sequence=["fuchsia"],title="50 Mile radius", zoom=3, height=600)
     fig.update_layout(mapbox_style="open-street-map")
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     fig.show()
 
 
-createMap()
-makeDistancedTable()
-insertIntoDistance()
-makeFiftyMileRadiusTable()
-plotFiftyMileRadius()
+def printRemoteJobs():
+    conn, cursor = establishConnection()
+
+    cursor.execute(''' SELECT * from DualTable WHERE Latitude = 0.0 AND Longitude = 0.0''')
+
+    rows = cursor.fetchall()
+
+    print("Printing Remote Jobs")
+    print("\n")
+    for data in rows:
+        print(data)
+
+
+def printandPlotSelectCompany():
+    conn, cursor = establishConnection()
+
+    company1 = "Picnic"
+    company2 = "Microsoft"
+
+    query = PD.read_sql_query(f'''SELECT * FROM DualTable WHERE company_posted = "{company1}" 
+    OR company_posted = "{company2}" ''', conn)
+
+    print("\n")
+    print(f"These are the jobs posted for {company1} and {company2} ")
+
+    print(query)
+
+    dataframe_from_table = PD.DataFrame(query, columns=["job_id", "job_type", "job_url", "created_at",
+                                                        "company_posted", "job_loc", "job_title",
+                                                        "Latitude", "Longitude"])
+
+    fig = px.scatter_mapbox(dataframe_from_table, lat="Latitude", lon="Longitude", hover_name="job_id",
+                            hover_data=["job_title", "job_type", "company_posted", "created_at"],
+                            color_discrete_sequence=["fuchsia"], title=f"{company1} and {company2} Job Locations",
+                            zoom=3, height=600)
+    fig.update_layout(mapbox_style="open-street-map")
+    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+    fig.show()
+
+
+
+
+# createMap()
+# makeDistancedTable()
+# insertIntoDistance()
+# makeFiftyMileRadiusTable()
+# plotFiftyMileRadius()
+printRemoteJobs()
+printandPlotSelectCompany()

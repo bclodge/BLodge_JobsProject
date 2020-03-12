@@ -74,17 +74,13 @@ def CopyTables():
     cursor.execute('''INSERT INTO DualTable SELECT * FROM jobs''')
 
 
-def UnionTable():
-    cursor.execute(''' SELECT DualTable.job_id, DualTable.job_type, DualTable.job_url, DualTable.created_at,
-        DualTable.company_posted,  DualTable.company_loc, DualTable.job_title, DualTable.latitude, DualTable.longitude
-         FROM DualTable UNION SELECT RSS_pull.job_id, RSS_pull.job_type, RSS_pull.job_url, RSS_pull.created_at,
-            RSS_pull.company_posted,  RSS_pull.location, RSS_pull.job_title, RSS_pull.latitude, RSS_pull.longitude
-             FROM RSS_pull;''')
+def combineTables():
+    cursor.execute(''' INSERT INTO DualTable SELECT * FROM RSS_pull;''')
     connection.commit()
 
 
 CopyTables()
-UnionTable()
+combineTables()
 # Commit your changes to the program
 connection.commit()
 # Close the cursor_object
