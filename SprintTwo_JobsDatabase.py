@@ -3,6 +3,7 @@ import time
 from typing import Tuple
 from geopy import Nominatim
 
+
 geo_locator = Nominatim(user_agent='GoogleMaps')
 
 
@@ -21,6 +22,7 @@ def setup_db(cursor: sqlite3.Cursor):
     job_url TEXT NOT NULL,\
     created_at TEXT NOT NULL, company_posted TEXT NOT NULL, company_loc TEXT NOT NULL, job_title TEXT NOT NULL,
      Latitude REAL, Longitude REAL);''')
+
 
 
 def write_to_db(cursor: sqlite3.Cursor, data):
