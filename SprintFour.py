@@ -164,24 +164,56 @@ def printandPlotSelectCompany():
     fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
     fig.show()
 
+
+
 # def gui():
 #     app = dash.Dash()
 #     df = createDataFrame()
 #
 #     app.layout = html.Div([
-#         html.H1('Walmart Store Openings'),
-#         html.Div(id='text-content'),
+#         html.H1('Here are the job postings!'),
+#             html.Div(id='text-content'),
 #         dashCoreComp.Graph(id='map', figure={
 #             'data': [{
+#                 'job_id': df['job_id'],
 #                 'lat': df['Latitude'],
 #                 'lon': df['Longitude'],
 #                 'marker': {
-#                     'color': df['YEAR'],
+#                     'color': ["fuchsia"],
 #                     'size': 8,
 #                     'opacity': 0.6
 #                 },
-#                 'customdata': df['storenum'],
+#                 'customdata': df['job_id'],
 #                 'type': 'scattermapbox'
+#             }],
+#             'layout': {
+#                 'mapbox': {'style': "open-street-map"},
+#                 'hovermode': 'closest',
+#                 'margin': {'l': 0, 'r': 0, 'b': 0, 't': 0}
+#             }
+#         })
+#     ])
+#
+#     @app.callback(
+#         dash.dependencies.Output('text-content', 'children'),
+#         [dash.dependencies.Input('map', 'hoverData')])
+#     def update_text(hoverData):
+#         s = df[df['job_id'] == hoverData['points'][0]['job_id']]
+#         return html.H3(
+#             'The {}, posted by {} at {} in {}'.format(
+#                 s.iloc[0]['job_id'],
+#                 s.iloc[0]['company_posted'],
+#                 s.iloc[0]['created_at'],
+#                 s.iloc[0]['company_loc']
+#             )
+#         )
+#
+#     app.css.append_css({
+#         'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'
+#     })
+#
+#     if __name__ == '__main__':
+#         app.run_server(debug=True)
 
 
 createMap()
@@ -191,3 +223,4 @@ makeFiftyMileRadiusTable()
 plotFiftyMileRadius()
 printRemoteJobs()
 printandPlotSelectCompany()
+# gui()
