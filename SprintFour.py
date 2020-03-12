@@ -2,12 +2,12 @@ import sqlite3
 import plotly.express as px
 import pandas as PD
 import SprintTwo_JobsDatabase
-import dash
-import dash_core_components as dashCoreComp
-import dash_html_components as html
+# import dash
+# import dash_core_components as dashCoreComp
+# import dash_html_components as html
 import geopy.distance as geoDist
 from typing import Tuple
-import plotly.graph_objs as go
+# import plotly.graph_objs as go
 import SprintThree
 
 
@@ -96,7 +96,8 @@ def insertIntoDistance():
         if distance <= 50:
             print(data[0])
             cursor.execute(
-                f'''INSERT OR IGNORE INTO  DistanceTable SELECT * FROM FiftyMileRadius where company_loc  = "{data[0]}" ''')
+                f'''INSERT OR IGNORE INTO  DistanceTable SELECT * FROM FiftyMileRadius where company_loc  = "{data[0]}"
+                ''')
 
     SprintTwo_JobsDatabase.close_db(conn)
 
@@ -145,7 +146,7 @@ def printandPlotSelectCompany():
     company1 = "Picnic"
     company2 = "Microsoft"
 
-    query = PD.read_sql_query(f'''SELECT * FROM DualTable WHERE company_posted = "{company1}" 
+    query = PD.read_sql_query(f'''SELECT * FROM DualTable WHERE company_posted = "{company1}" \
     OR company_posted = "{company2}" ''', conn)
 
     print("\n")

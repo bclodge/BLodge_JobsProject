@@ -3,7 +3,6 @@ import sqlite3
 from geopy import Nominatim
 import time
 
-
 geo_locator = Nominatim(user_agent='GoogleMaps')
 
 parsed_feed = feedparser.parse("https://stackoverflow.com/jobs/feed")
@@ -12,9 +11,8 @@ cursor = connection.cursor()
 
 
 def makeRSSTable():
-    cursor.execute(''' CREATE TABLE IF NOT EXISTS RSS_pull(\
-       job_id TEXT PRIMARY KEY, job_type TEXT, job_url TEXT, created_at TEXT, 
-            company_posted TEXT,  location TEXT, job_title TEXT, latitude REAL, longitude REAL);''')
+    cursor.execute(''' CREATE TABLE IF NOT EXISTS RSS_pull(job_id TEXT PRIMARY KEY, job_type TEXT, job_url TEXT,\
+     created_at TEXT, company_posted TEXT,  location TEXT, job_title TEXT, latitude REAL, longitude REAL);''')
 
     cursor.execute('DELETE FROM RSS_pull;')  # clears the table before running, error arose on unique id of job links on
     # rerun
@@ -26,7 +24,6 @@ def makeRSSTable():
         link = entries.link
         created_at = entries.published
         company_posted = entries.author
-        description = entries.description
 
         # print(id)
         # print(created_at)
@@ -45,7 +42,8 @@ def makeRSSTable():
 
         with connection:
             try:
-                cursor.execute('''INSERT INTO RSS_pull (job_id, job_type, job_url, created_at, company_posted, location,\
+                cursor.execute('''INSERT INTO RSS_pull (job_id, job_type, job_url, created_at, company_posted, location,
+                \
                  job_title, latitude, longitude)
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);''',
                                (id, "Full Time", link, created_at, company_posted, string[first_pos + 1: last_pos],
@@ -54,7 +52,7 @@ def makeRSSTable():
                                 temp_location_holder.longitude))
 
             except AttributeError:
-                cursor.execute('''INSERT INTO RSS_pull (job_id, job_type, job_url, created_at,
+                cursor.execute('''INSERT INTO RSS_pull (job_id, job_type, job_url, created_at,\
             company_posted,  location, job_title, latitude, longitude) ''' 'VALUES (?, '
                                '?, ?, ?, ?, ?, ?, ?, ?);''',
                                (id, "Remote", link, created_at, company_posted, string[first_pos + 1: last_pos],
@@ -63,7 +61,6 @@ def makeRSSTable():
 
 
 def CopyTables():
-
     cursor.execute(''' CREATE TABLE IF NOT EXISTS DualTable(\
             job_id TEXT PRIMARY KEY,\
             job_type TEXT NOT NULL,\
@@ -77,6 +74,7 @@ def CopyTables():
 def combineTables():
     cursor.execute(''' INSERT INTO DualTable SELECT * FROM RSS_pull;''')
     connection.commit()
+
 
 def main():
     makeRSSTable()
