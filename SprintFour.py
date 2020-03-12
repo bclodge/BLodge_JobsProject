@@ -166,10 +166,10 @@ def printandPlotSelectCompany():
 
 
 
-# createMap()
-# makeDistancedTable()
-# insertIntoDistance()
-# makeFiftyMileRadiusTable()
-# plotFiftyMileRadius()
+createMap()
+makeDistancedTable()
+insertIntoDistance()
+makeFiftyMileRadiusTable()
+plotFiftyMileRadius()
 printRemoteJobs()
 printandPlotSelectCompany()
